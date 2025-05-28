@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Търсене на човек по ID</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        input, button {
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            background: #fff;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Търсене на човек по ID</h1>
+
+    <label for="personId">Въведи ID:</label>
+    <input type="number" id="personId" min="1" />
+    <button onclick="searchPerson()">Търси</button>
+
+    <pre id="result"></pre>
+
+    <script>
+        // Данни за хора
+        const people = [
+            { id: 1, name: "Николай Стоянов", age: 28, city: "Бургас" },
+            { id: 2, name: "Елица Василева", age: 34, city: "Русе" },
+            { id: 3, name: "Димитър Павлов", age: 45, city: "Стара Загора" },
+            { id: 4, name: "Анна Николова", age: 22, city: "Перник" },
+            { id: 5, name: "Росен Илиев", age: 39, city: "Шумен" }
+        ];
+
+        function searchPerson() {
+            const input = document.getElementById("personId");
+            const result = document.getElementById("result");
+            const id = Number(input.value);
+
+            if (!id) {
+                result.textContent = "Моля, въведи валидно ID!";
+                return;
+            }
+
+            const person = people.find(p => p.id === id);
+
+            if (person) {
+                result.textContent = `ID: ${person.id}
+Име: ${person.name}
+Възраст: ${person.age}
+Град: ${person.city}`;
+            } else {
+                result.textContent = "Няма човек с това ID.";
+            }
+        }
+    </script>
+</body>
+</html>
